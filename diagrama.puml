@@ -1,0 +1,111 @@
+class Jugador{
+     - PersonajePrincipal : bomberman
+     - Vida : vidas
+}
+class Juego{
+    - Modo : modoJuego
+    - Nivel : facilDificil
+    - Jugador : personajes
+}
+class Bomba{
+    + Explotar()
+    + Explosion()
+}
+class Enemigo {
+    + Morir(Explosion): Punto
+}
+class Vida{
+    + Morir(Explosion): PerderVida
+}
+class Punto
+class Mapa{
+    + CargarMapa (Modo) : (Mapa)
+    + InicializarNivel (Nivel) : (Mapa)
+}
+class Bomberman
+class Planta
+class Pared
+class Explosion{
+    - Sonido : explosion
+    + Atacar(): Bomba
+}
+class Flecha
+class Obstaculo
+class Camino
+class Compañero
+class Nivel
+Class NivelFacil
+Class NivelDificil
+class PersonajePrincipal
+class Trampa
+class BombaEspecial{
+   + Explosion()
+}
+class Modo
+class Multijugador
+class Historia{
+   - Actualizar : progreso
+}
+class Sonido
+class Supervivencia{
+   - Enemigo : enemigox2
+}
+
+class Personaje{
+}
+class PerderVida
+class Puntox2
+class Enemigox2
+class Progreso
+class Explotar{
+    + Atacar(): Bomba
+}
+
+NivelFacil "1" --|> "1" Nivel
+NivelDificil "1" --|> "1" Nivel
+
+Juego "1" *-- "1,2,3,4" Jugador
+Juego "1" *-- "3" Modo
+Juego "1" *-- "*" Nivel
+Juego "1" *-- "*" Sonido
+
+Personaje "1" o-- "1" Explosion
+Personaje "1" *-- "1" PerderVida 
+Supervivencia "1" *-- "1" Enemigox2
+BombaEspecial "1" *-- "1" Puntox2
+Historia "1" *-- "1" Progreso
+Jugador "1" *-- "1" PersonajePrincipal
+Jugador "1" o-- "1" Mapa
+Jugador "1" o-- "*" Personaje
+Jugador "1" *-- "3" Vida
+Jugador "1" o-- "*" Bomba
+Jugador "1" *-- "*" Enemigo
+Enemigo "1" o-- "1" Explotar
+
+Personaje "1" --|> "*" Compañero
+Personaje "1" o-- "3" Vida
+
+PersonajePrincipal "1" --|> "1" Bomberman
+PersonajePrincipal "1" *-- "*" Compañero
+PersonajePrincipal "1" --|> "1" Personaje
+
+Mapa "1" *-- "*" Planta
+Mapa "1" *-- "*" Camino
+Mapa "1" *-- "*" Pared
+Mapa "1" *-- "*" Trampa
+
+Camino "1" *-- "*" Flecha
+Camino "1" *-- "*" Obstaculo
+
+Multijugador "1" --|> "1" Modo
+Historia "1" --|> "1" Modo
+Supervivencia "1" --|> "1" Modo
+
+Nivel "1" o-- "1" Mapa
+Modo "1" o-- "1" Mapa
+
+Punto "100" --|> "1" BombaEspecial
+Enemigo "1" *-- "*" Punto
+Bomba "1" --|> "1" Explosion
+Explosion "1" o-- "1" Enemigo
+Explosion "1" *-- "1" Sonido
