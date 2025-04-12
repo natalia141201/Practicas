@@ -5,7 +5,6 @@ using namespace std;
 
 int main(int argc, char const *argv[]){
 
-    ifstream archivoEntrada;
     ofstream archivoSalida;
 
 //Abrir archivo de salida
@@ -21,5 +20,21 @@ archivoSalida << "Hola, este es un archivo de salida." <<endl;
 //Cerrar el archivo de salida
 archivoSalida.close();
 
+//leer el archivo de Entrada
+ifstream archivoEntrada;
+string linea;
+
+//Abrir el archivo de entrada
+archivoEntrada.open("archivo_salida.txt");
+if (!archivoEntrada) {
+    cerr << "Error al abrir el archivo de engtrada."<<endl;
+    return 1;
+}
+//Leer el archivo de entrada
+while (getline(archivoEntrada, linea)){
+    cout <<linea <<endl;
+}
+//Cerrar el archivo de entrada
+archivoEntrada.close();
 }
 
