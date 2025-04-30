@@ -31,19 +31,19 @@ archivoSalida.write((const char*)(&p2), sizeof(Persona));
 archivoSalida.close();
 
 // //leer el archivo de Entrada
-// ifstream archivoEntrada;
-// string linea;
+ ifstream archivoEntrada;
+ Persona p;
 
-// //Abrir el archivo de entrada
-// archivoEntrada.open("archivo_salida.txt");
-// if (!archivoEntrada) {
-//     cerr << "Error al abrir el archivo de engtrada."<<endl;
-//     return 1;
-// }
-// //Leer el archivo de entrada
-// while (getline(archivoEntrada, linea)){
-//     cout <<linea <<endl;
-// }
-// //Cerrar el archivo de entrada
-// archivoEntrada.close();
+ //Abrir el archivo de entrada
+ archivoEntrada.open("archivo_salida.bin" , ios::binary);
+ if (!archivoEntrada) {
+     cerr << "Error al abrir el archivo de entrada."<<endl;
+     return 1;
+ }
+ //Leer el archivo de entrada
+ while (archivoEntrada.read((char*)(&p), sizeof(Persona))) {
+     cout << "Nombre: "<< p.nombre << ", Edad: " << p.edad <<endl;
+ }
+ //Cerrar el archivo de entrada
+ archivoEntrada.close();
 }
